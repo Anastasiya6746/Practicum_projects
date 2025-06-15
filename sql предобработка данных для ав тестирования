@@ -1,0 +1,15 @@
+1. Для начала с помощью SQL приведите исходные данные из таблиц к такому виду, который будет пригодным для проверки гипотезы в Python. Отберите пользователей только из Москвы и Санкт-Петербурга и выведите их активность, то есть сумму часов.
+В результат должны войти следующие поля:
+city — город пользователя;
+puid — идентификатор пользователя;
+hours — общее количество часов активности (вычисляется по полю hours).
+
+Select usage_geo_id_name as city,
+puid, sum(hours) as hours
+From bookmate.audition
+Join bookmate.geo on bookmate.audition.usage_geo_id=bookmate.geo.usage_geo_id
+Where  usage_geo_id_name = 'Москва' or usage_geo_id_name = 'Санкт-Петербург'
+Group by usage_geo_id_name,puid
+
+
+
